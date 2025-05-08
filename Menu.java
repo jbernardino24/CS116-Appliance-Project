@@ -76,7 +76,7 @@ public class Menu {
         }
     }
 
-private static void addAppliance() {
+    private static void addAppliance() {
         System.out.println("\nAdd Appliance:");
         System.out.print("Location (8-digit number): ");
         long location = scanner.nextLong();
@@ -109,7 +109,7 @@ private static void addAppliance() {
         }
     }
 
-  private static void deleteAppliance() throws ApplianceException {
+    private static void deleteAppliance() throws ApplianceException {
         System.out.println("\nDelete Appliance:");
         System.out.print("Enter Appliance ID to delete: ");
         int idToDelete = scanner.nextInt();
@@ -120,7 +120,7 @@ private static void addAppliance() {
         }
     }
 
-   private static void findAppliance() {
+    private static void findAppliance() {
        System.out.println("\nFind Appliance:");
         System.out.print("Enter Appliance ID to find: ");
         int idToFind = scanner.nextInt();
@@ -134,7 +134,7 @@ private static void addAppliance() {
        }
     }
 
-  private static void viewAppliancesByLocation() {
+    private static void viewAppliancesByLocation() {
         System.out.println("\nView Appliances by Location:");
         System.out.print("Enter Location: ");
         long location = scanner.nextLong();
@@ -151,7 +151,7 @@ private static void addAppliance() {
         }
     }
 
-  private static void viewAppliancesByType() {
+    private static void viewAppliancesByType() {
         System.out.println("\nView Appliances by Type:");
         System.out.print("Enter Appliance Type (Appliance or SmartAppliance): ");
         String type = scanner.next();
@@ -168,7 +168,7 @@ private static void addAppliance() {
         }
     }
 
-  private static void loadAppliancesFromFile() {
+    private static void loadAppliancesFromFile() {
         System.out.println("\nLoad Appliances from File:");
         System.out.print("Enter filename: ");
         String filename = scanner.next();
@@ -224,7 +224,7 @@ private static void addAppliance() {
         }
     }
 
-   private static void runSimulation() {
+    private static void runSimulation() {
         if (applianceSet.getCount() == 0) {
             System.out.println("No appliances to simulate.");
             return;
@@ -235,6 +235,6 @@ private static void addAppliance() {
         scanner.nextLine(); // Consume newline.
         Simulation simulation = new Simulation(applianceSet);
         simulation.runSimulation(intervals);
+        }
     }
 }
-
