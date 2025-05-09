@@ -1,26 +1,37 @@
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ApplianceSet extends Appliance {
 
     private Appliance[] appliances;
-    private static int counter;
+    private int count;
 
     public ApplianceSet() {
-        ApplianceSet[] List = new ApplianceSet[10000];
+        super(0L, "Default Appliance Set", 0, 0, 0.0); // Provide default values
+        this.appliances = new Appliance[10];
+        this.count = 0;
     }
 
-    public ApplianceSet(int range) {
-        ApplianceSet[] UserList = new ApplianceSet[range];
+    public ApplianceSet(int initialCapacity) {
+        super(0L, "User Defined Set", 0, 0, 0.0); // Provide default values
+        if (initialCapacity <= 0) {
+            throw new IllegalArgumentException("Initial capacity must be positive");
+        }
+        this.appliances = new Appliance[initialCapacity];
+        this.count = 0;
     }
 
     public int getCount() {
-        counter = 0;
+        count = 0;
 
         for (int i = 0; i < appliances.length; i++) {
             if (appliances[i] != null) {
-                counter++;
+                count++;
             }
         }
 
-        return counter;
+        return count;
     }
 
     public boolean addAppliance(Appliance newA) {
@@ -54,5 +65,54 @@ public class ApplianceSet extends Appliance {
 
     public String toString() {
         return "";
+    }
+
+    public boolean deleteAppliance(int idToDelete) {
+        for (int i = 0; i < count; i++) {
+            if (appliances[i] != null && appliances[i].getApplianceID() == idToDelete) {
+                // Found the appliance to delete
+                // Shift subsequent elements to fill the gap
+                for (int j = i; j < count - 1; j++) {
+                    appliances[j] = appliances[j + 1];
+                }
+                appliances[count - 1] = null; // Clear the last element
+                count--;
+                return true; // Deletion successful
+            }
+        }
+        return false; // Appliance with the given ID not found
+    }
+
+    public Appliance findAppliance(int idToFind) {
+        for (int i = 0; i < count; i++) {
+            if (appliances[i] != null && appliances[i].getApplianceID() == idToFind) {
+                return appliances[i]; // Found the appliance
+            }
+        }
+        return null; // Appliance with the given ID not found
+
+    }
+
+    public List<Appliance> getAppliancesByLocation(long location) {
+        List<Appliance> foundAppliances = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            if (appliances[i] != null && appliances[i].getLocation() == location) {
+                foundAppliances.add(appliances[i]);
+            }
+        }
+        return foundAppliances;
+    }
+
+    public List<Appliance> getAppliancesByType(String type) {
+        List<Appliance> foundAppliances = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            if (appliances[i] != null) {
+                // Check if the appliance's class name matches the requested type
+                if (appliances[i].getClass().getSimpleName().equalsIgnoreCase(type)) {
+                    foundAppliances.add(appliances[i]);
+                }
+            }
+        }
+        return foundAppliances;
     }
 }

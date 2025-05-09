@@ -125,93 +125,93 @@ public class ApplianceSmartApplianceTest {
                 pass = false;
             }
         }
-        
-		if (testNumber==4) { // Test Case 4 - SmartAppliance constructor (args OK), toString()
-			SmartAppliance o1 = new SmartAppliance(10000001,"Video Game",50,0,0.167,.25);
-			boolean a1=o1.toString().equals("1 Loc=10000001 Name=Video Game OnW=50 OffW=0 ProbOn=0.167 Reduce%=0.25");
-			if (!a1) {
-				System.out.println("SmartAppliance constructor all args OK");
-				System.out.println("Expected Output:"+"1 Loc=10000001 Name=Video Game OnW=50 OffW=0 ProbOn=0.167 Reduce%=0.25");
-				System.out.println("Your Output    :"+o1.toString());
-				pass=false;
-			}
-			SmartAppliance o2 = new SmartAppliance(10000001,"Dishwasher",200,0,0.05,.5);
-			boolean a2=o2.toString().equals("2 Loc=10000001 Name=Dishwasher OnW=200 OffW=0 ProbOn=0.05 Reduce%=0.5");
-			if (!a2) {
-				System.out.println("SmartAppliance constructor all args OK");
-				System.out.println("Expected Output:"+"2 Loc=10000001 Name=Dishwasher OnW=200 OffW=0 ProbOn=0.05 Reduce%=0.5");
-				System.out.println("Your Output    :"+o2.toString());
-				pass=false;
-			}	
-			SmartAppliance o3 = new SmartAppliance(12345678,"Video Game",50,0,0.1,1);
-			boolean a3=o3.toString().equals("3 Loc=12345678 Name=Video Game OnW=50 OffW=0 ProbOn=0.1 Reduce%=1.0");
-			if (!a3) {
-				System.out.println("SmartAppliance constructor all args OK");
-				System.out.println("Expected Output:"+"3 Loc=12345678 Name=Video Game OnW=50 OffW=0 ProbOn=0.1 Reduce%=1.0");
-				System.out.println("Your Output    :"+o3.toString());				
-				pass=false;
-			}
-		}	
-		if (testNumber==5) { // Test Case 5 - SmartAppliance constructor (args not OK)
-			SmartAppliance o1 = new SmartAppliance(10011001,"Video Game",50,0,0.167, -.1);
-			boolean a1=o1.toString().equals("1 Loc=10011001 Name=Video Game OnW=50 OffW=0 ProbOn=0.167 Reduce%=1.0");
-			if (!a1) {
-				System.out.println("SmartAppliance constructor - reduce percentage negative");
-				System.out.println("Expected Output:"+"1 Loc=10011001 Name=Video Game OnW=50 OffW=0 ProbOn=0.167 Reduce%=1.0");
-				System.out.println("Your Output    :"+o1.toString());
-				pass=false;
-			}
-			SmartAppliance o2 = new SmartAppliance(10000001,"Washer",200,0,0.05, 1.1);
-			boolean a2=o2.toString().equals("2 Loc=10000001 Name=Washer OnW=200 OffW=0 ProbOn=0.05 Reduce%=1.0");
-			if (!a2) {
-				System.out.println("SmartAppliance constructor - reduce percentage >1");
-				System.out.println("Expected Output:"+"2 Loc=10000001 Name=Washer OnW=200 OffW=0 ProbOn=0.05 Reduce%=1.0");
-				System.out.println("Your Output    :"+o2.toString());
-				pass=false;
-			}			
-		}			
-		if (testNumber==6) { // Test Case 6 - SmartAppliance equals
-			SmartAppliance o1 = new SmartAppliance(123456781,"Video Game",50,0,0.167,.5);
-			SmartAppliance o2 = new SmartAppliance(22222222,"Video Game",50,0,0.167,.5);
-			boolean a12=o1.equals(o2);
-			if (!a12) {
-				System.out.println("SmartAppliance - equals TRUE");
-				System.out.println("Expected Output:"+"true");
-				System.out.println("Your Output    :"+a12);
-				pass=false;
-			}
-			boolean a21=o2.equals(o1);
-			if (!a21) {
-				System.out.println("SmartAppliance - reverse equals TRUE");
-				System.out.println("Expected Output:"+"true");
-				System.out.println("Your Output    :"+a21);
-				pass=false;
-			}		
-			SmartAppliance o3 = new SmartAppliance(22222222,"Video Game",50,0,0.167,.51);
-			boolean a13=o1.equals(o3);
-			if (a13) {
-				System.out.println("SmartAppliance - equals FALSE reducePercent");
-				System.out.println("Expected Output:"+"false");
-				System.out.println("Your Output    :"+a13);
-				pass=false;
-			}			
-			Appliance o4 = new Appliance(22222222,"Video Game",50,0,0.167);
-			boolean a34=o3.equals(o4);
-			if (a34) {
-				System.out.println("SmartAppliance to Appliance - equals FALSE");
-				System.out.println("Expected Output:"+"false");
-				System.out.println("Your Output    :"+a34);
-				pass=false;
-			}
-			boolean a43=o4.equals(o3);
-			if (!a43) {
-				System.out.println("Appliance to SmartAppliance - equals TRUE");
-				System.out.println("Expected Output:"+"true");
-				System.out.println("Your Output    :"+a43);	
-				pass=false;
-			}			
-		}	
-         
+
+        if (testNumber == 4) { // Test Case 4 - SmartAppliance constructor (args OK), toString()
+            SmartAppliance o1 = new SmartAppliance(10000001, "Video Game", 50, 0, 0.167, .25);
+            boolean a1 = o1.toString().equals("1 Loc=10000001 Name=Video Game OnW=50 OffW=0 ProbOn=0.167 Reduce%=0.25");
+            if (!a1) {
+                System.out.println("SmartAppliance constructor all args OK");
+                System.out.println("Expected Output:" + "1 Loc=10000001 Name=Video Game OnW=50 OffW=0 ProbOn=0.167 Reduce%=0.25");
+                System.out.println("Your Output    :" + o1.toString());
+                pass = false;
+            }
+            SmartAppliance o2 = new SmartAppliance(10000001, "Dishwasher", 200, 0, 0.05, .5);
+            boolean a2 = o2.toString().equals("2 Loc=10000001 Name=Dishwasher OnW=200 OffW=0 ProbOn=0.05 Reduce%=0.5");
+            if (!a2) {
+                System.out.println("SmartAppliance constructor all args OK");
+                System.out.println("Expected Output:" + "2 Loc=10000001 Name=Dishwasher OnW=200 OffW=0 ProbOn=0.05 Reduce%=0.5");
+                System.out.println("Your Output    :" + o2.toString());
+                pass = false;
+            }
+            SmartAppliance o3 = new SmartAppliance(12345678, "Video Game", 50, 0, 0.1, 1);
+            boolean a3 = o3.toString().equals("3 Loc=12345678 Name=Video Game OnW=50 OffW=0 ProbOn=0.1 Reduce%=1.0");
+            if (!a3) {
+                System.out.println("SmartAppliance constructor all args OK");
+                System.out.println("Expected Output:" + "3 Loc=12345678 Name=Video Game OnW=50 OffW=0 ProbOn=0.1 Reduce%=1.0");
+                System.out.println("Your Output    :" + o3.toString());
+                pass = false;
+            }
+        }
+        if (testNumber == 5) { // Test Case 5 - SmartAppliance constructor (args not OK)
+            SmartAppliance o1 = new SmartAppliance(10011001, "Video Game", 50, 0, 0.167, -.1);
+            boolean a1 = o1.toString().equals("1 Loc=10011001 Name=Video Game OnW=50 OffW=0 ProbOn=0.167 Reduce%=1.0");
+            if (!a1) {
+                System.out.println("SmartAppliance constructor - reduce percentage negative");
+                System.out.println("Expected Output:" + "1 Loc=10011001 Name=Video Game OnW=50 OffW=0 ProbOn=0.167 Reduce%=1.0");
+                System.out.println("Your Output    :" + o1.toString());
+                pass = false;
+            }
+            SmartAppliance o2 = new SmartAppliance(10000001, "Washer", 200, 0, 0.05, 1.1);
+            boolean a2 = o2.toString().equals("2 Loc=10000001 Name=Washer OnW=200 OffW=0 ProbOn=0.05 Reduce%=1.0");
+            if (!a2) {
+                System.out.println("SmartAppliance constructor - reduce percentage >1");
+                System.out.println("Expected Output:" + "2 Loc=10000001 Name=Washer OnW=200 OffW=0 ProbOn=0.05 Reduce%=1.0");
+                System.out.println("Your Output    :" + o2.toString());
+                pass = false;
+            }
+        }
+        if (testNumber == 6) { // Test Case 6 - SmartAppliance equals
+            SmartAppliance o1 = new SmartAppliance(123456781, "Video Game", 50, 0, 0.167, .5);
+            SmartAppliance o2 = new SmartAppliance(22222222, "Video Game", 50, 0, 0.167, .5);
+            boolean a12 = o1.equals(o2);
+            if (!a12) {
+                System.out.println("SmartAppliance - equals TRUE");
+                System.out.println("Expected Output:" + "true");
+                System.out.println("Your Output    :" + a12);
+                pass = false;
+            }
+            boolean a21 = o2.equals(o1);
+            if (!a21) {
+                System.out.println("SmartAppliance - reverse equals TRUE");
+                System.out.println("Expected Output:" + "true");
+                System.out.println("Your Output    :" + a21);
+                pass = false;
+            }
+            SmartAppliance o3 = new SmartAppliance(22222222, "Video Game", 50, 0, 0.167, .51);
+            boolean a13 = o1.equals(o3);
+            if (a13) {
+                System.out.println("SmartAppliance - equals FALSE reducePercent");
+                System.out.println("Expected Output:" + "false");
+                System.out.println("Your Output    :" + a13);
+                pass = false;
+            }
+            Appliance o4 = new Appliance(22222222, "Video Game", 50, 0, 0.167);
+            boolean a34 = o3.equals(o4);
+            if (a34) {
+                System.out.println("SmartAppliance to Appliance - equals FALSE");
+                System.out.println("Expected Output:" + "false");
+                System.out.println("Your Output    :" + a34);
+                pass = false;
+            }
+            boolean a43 = o4.equals(o3);
+            if (!a43) {
+                System.out.println("Appliance to SmartAppliance - equals TRUE");
+                System.out.println("Expected Output:" + "true");
+                System.out.println("Your Output    :" + a43);
+                pass = false;
+            }
+        }
+
         System.out.println(pass);
     }
 }

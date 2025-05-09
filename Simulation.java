@@ -1,3 +1,4 @@
+
 public class Simulation {
 
     private ApplianceSet applianceSet;
@@ -18,7 +19,7 @@ public class Simulation {
         System.out.println("\nRunning Simulation for " + intervals + " intervals:");
         List<Appliance> allAppliances = new ArrayList<>();
         //Get all appliances.
-        for(Appliance appliance: applianceSet.appliances){
+        for (Appliance appliance : applianceSet.appliances) {
             allAppliances.add(appliance);
         }
 
@@ -28,15 +29,15 @@ public class Simulation {
             List<String> affected = new ArrayList<>();
             List<SmartAppliance> smartAppliancesOn = new ArrayList<>();
 
-             // Determine appliance states and calculate wattage
+            // Determine appliance states and calculate wattage
             for (Appliance appliance : allAppliances) {
                 boolean isOn = random.nextDouble() < appliance.getProbOn();
                 int wattage = 0;
 
                 if (appliance instanceof SmartAppliance) {
-                  SmartAppliance smartAppliance = (SmartAppliance) appliance; // Cast to SmartAppliance
+                    SmartAppliance smartAppliance = (SmartAppliance) appliance; // Cast to SmartAppliance
                     wattage = smartAppliance.getReducedWatts(isOn);
-                  if (isOn) {
+                    if (isOn) {
                         smartAppliancesOn.add(smartAppliance);
                     }
                 } else {
@@ -57,7 +58,7 @@ public class Simulation {
                 reduceSmartApplianceUsage(smartAppliancesOn, excessWattage, affected);
             }
 
-             // Print report for this interval
+            // Print report for this interval
             System.out.println("Affected Appliances/Locations:");
             if (affected.isEmpty()) {
                 System.out.println("None");
@@ -67,10 +68,11 @@ public class Simulation {
                 }
             }
             System.out.println("Total Wattage: " + currentWattage + "W");
-          }
+        }
         generateSummaryReport();
     }
-     private void reduceSmartApplianceUsage(List<SmartAppliance> smartAppliances, int excessWattage, List<String> affected) {
+
+    private void reduceSmartApplianceUsage(List<SmartAppliance> smartAppliances, int excessWattage, List<String> affected) {
         if (smartAppliances == null || smartAppliances.isEmpty()) {
             System.out.println("No smart appliances to reduce usage.");
             return;
@@ -95,7 +97,7 @@ public class Simulation {
                 }
             }
         }
-       if (wattageReduced < excessWattage) {
+        if (wattageReduced < excessWattage) {
             System.out.println("Could not reduce wattage enough.  Remaining excess: " + (excessWattage - wattageReduced) + "W");
         }
     }
@@ -109,7 +111,7 @@ public class Simulation {
         }
     }
 
-     private int countLocations() {
+    private int countLocations() {
         Set<Long> locations = new HashSet<>();
         for (Appliance appliance : applianceSet.appliances) {
             locations.add(appliance.getLocation());
@@ -122,7 +124,7 @@ public class Simulation {
         counts.put("Appliance", 0);
         counts.put("SmartAppliance", 0);
 
-         for (Appliance appliance : applianceSet.appliances) {
+        for (Appliance appliance : applianceSet.appliances) {
             if (appliance instanceof SmartAppliance) {
                 counts.put("SmartAppliance", counts.get("SmartAppliance") + 1);
             } else {

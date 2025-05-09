@@ -1,3 +1,4 @@
+
 public class SmartAppliance extends Appliance {
 
     private double reducePercent;
@@ -58,4 +59,3 @@ public class SmartAppliance extends Appliance {
     }
 
 }
-

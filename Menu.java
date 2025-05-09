@@ -1,3 +1,13 @@
+
+import java.util.Scanner;
+import java.util.InputMismatchException;
+import java.util.List; // You're using List
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+
 public class Menu {
 
     private static ApplianceSet applianceSet = new ApplianceSet();
@@ -21,7 +31,6 @@ public class Menu {
     }
 
     private static void displayMenu() {
-      
         System.out.println("\nAppliance Management System Menu:");
         System.out.println("1. Add Appliance");
         System.out.println("2. Delete Appliance");
@@ -34,7 +43,7 @@ public class Menu {
         System.out.print("Enter your choice: ");
     }
 
-  private static int getUserChoice() {
+    private static int getUserChoice() {
         while (!scanner.hasNextInt()) {
             System.out.println("Invalid input. Please enter a number.");
             scanner.next(); // Consume the invalid input
@@ -42,7 +51,7 @@ public class Menu {
         return scanner.nextInt();
     }
 
-  private static void processChoice(int choice) {
+    private static void processChoice(int choice) {
         try {
             switch (choice) {
                 case 1:
@@ -52,7 +61,7 @@ public class Menu {
                     deleteAppliance();
                     break;
                 case 3:
-                findAppliance();
+                    findAppliance();
                     break;
                 case 4:
                     viewAppliancesByLocation();
@@ -71,7 +80,8 @@ public class Menu {
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
-          } catch (ApplianceException e) {
+            }
+        } catch (ApplianceException e) {
             System.err.println("Error: " + e.getMessage()); // Use cerr for error messages
         }
     }
@@ -93,7 +103,7 @@ public class Menu {
         System.out.print("Is it a Smart Appliance? (yes/no): ");
         String isSmart = scanner.next();
         scanner.nextLine(); // Consume the newline
-        
+
         Appliance newAppliance;
         if (isSmart.equalsIgnoreCase("yes")) {
             System.out.print("Reduction Percentage (0 to 1): ");
@@ -121,7 +131,7 @@ public class Menu {
     }
 
     private static void findAppliance() {
-       System.out.println("\nFind Appliance:");
+        System.out.println("\nFind Appliance:");
         System.out.print("Enter Appliance ID to find: ");
         int idToFind = scanner.nextInt();
         scanner.nextLine(); // consume the leftover newline.
@@ -131,7 +141,7 @@ public class Menu {
             System.out.println("Appliance found: " + foundAppliance);
         } else {
             System.out.println("Appliance not found.");
-       }
+        }
     }
 
     private static void viewAppliancesByLocation() {
@@ -139,7 +149,7 @@ public class Menu {
         System.out.print("Enter Location: ");
         long location = scanner.nextLong();
         scanner.nextLine(); // Consume newline
-        
+
         List<Appliance> appliances = applianceSet.getAppliancesByLocation(location);
         if (appliances.isEmpty()) {
             System.out.println("No appliances found at location " + location);
@@ -174,7 +184,6 @@ public class Menu {
         String filename = scanner.next();
         scanner.nextLine(); // Consume newline.
 
-        
         File file = new File(filename);
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
@@ -182,7 +191,7 @@ public class Menu {
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length >= 6) {
-                    try {  
+                    try {
                         long location = Long.parseLong(parts[0].trim());
                         String name = parts[1].trim();
                         int onWatts = Integer.parseInt(parts[2].trim());
@@ -196,27 +205,25 @@ public class Menu {
                             newAppliance = new SmartAppliance(location, name, onWatts, offWatts, probOn, reductionPercentage);
                         } else if (type.equalsIgnoreCase("Appliance")) {
                             newAppliance = new Appliance(location, name, onWatts, offWatts, probOn);
-                        }
-                        else{
+                        } else {
                             System.out.println("Skipping invalid appliance type or format: " + line);
                             continue;
                         }
 
                         if (applianceSet.addAppliance(newAppliance)) {
                             appliancesLoaded++;
-                        }
-                        else{
+                        } else {
                             System.out.println("Failed to add appliance: " + line);
                         }
 
-                 } catch (NumberFormatException e) {
+                    } catch (NumberFormatException e) {
                         System.err.println("Error parsing line: " + line + ". Skipping.");
                     }
                 } else {
                     System.err.println("Skipping invalid line: " + line);
                 }
             }
-             System.out.println(appliancesLoaded + " appliances loaded from file.");
+            System.out.println(appliancesLoaded + " appliances loaded from file.");
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + filename);
         } catch (IOException e) {
@@ -235,6 +242,5 @@ public class Menu {
         scanner.nextLine(); // Consume newline.
         Simulation simulation = new Simulation(applianceSet);
         simulation.runSimulation(intervals);
-        }
     }
 }
